@@ -9,7 +9,7 @@ export default class InitScene extends Phaser.Scene {
         console.log("Run Create");
     }
     update() {
-        const randomNumber = Math.floor(Math.random() * 100);
-        console.log(`Run Update: ${randomNumber}`);
+        this.scene.stop('InitScene');
+        this.scene.start('ActionScene');
     }
 }

@@ -1,6 +1,6 @@
 export default class Resources {
     static BaseResources = new Map([
-        // Items go here
+        ["tileset-stacks", { type: "tilesets", name: "tileset-platform", ext: "png" }]
     ]);
     static createResources = (scene) => {
         for (const [key, value] of this.BaseResources) {

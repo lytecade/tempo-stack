@@ -1,9 +1,10 @@
+import Resources from "../utilities/utility-resources.js"
 export default class ActionScene extends Phaser.Scene {
     constructor() {
         super({ key: 'ActionScene' });
     }
     preload() {
-        console.log("Run Preload Action");
+        Resources.createResources(this);
     }
     create() {
         console.log("Run Create Action");

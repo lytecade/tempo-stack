@@ -7,7 +7,7 @@ export default class ActionScene extends Phaser.Scene {
         Resources.createResources(this);
     }
     create() {
-        console.log("Run Create Action");
+        Resources.createBackgrounds(this, "image-background");
     }
     update() {
         console.log("Run Update Action");

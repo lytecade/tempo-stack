@@ -1,3 +1,6 @@
+export const StackSettings = {
+    TileSize: 8,
+}
 export default class Helpers {
     static isValueEmpty = (resourceValue) => {
         if (resourceValue === 0 || resourceValue === undefined || resourceValue === "") {

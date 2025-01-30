@@ -10,6 +10,8 @@ export default class ActionScene extends Phaser.Scene {
     create() {
         Resources.createBackgrounds(this, "image-background");
         this.tileSize = StackSettings.TileSize;
+        this.widthMax = StackSettings.TileMaxWidthBounds;
+        const widthInTiles = Math.min(Math.floor(this.widthMax / this.tileSize));
     }
     update() {
         console.log("Run Update Action");

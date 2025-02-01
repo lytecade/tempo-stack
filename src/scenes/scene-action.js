@@ -18,17 +18,17 @@ export default class ActionScene extends Phaser.Scene {
     generateMap() {
         const tileRows = Math.min(Math.floor(StackSettings.TileMaxHeightBounds / StackSettings.TileSize));
         const widthInTiles = Math.min(Math.floor(StackSettings.TileMaxWidthBounds / StackSettings.TileSize));
-        for (let row = 0; row < widthInTiles; row++) {
+        for (let row = 0; row < tileRows; row++) {
             this.tiles[row] = [];
-            for (let column = 0; column < tileRows; column++) {
-                if (column === (tileRows -1)) {
+            for (let column = 0; column < widthInTiles; column++) {
+                if (row === (tileRows -1)) {
                     this.tiles[row][column] = 4;
                 } else {
-                    this.tiles[row][column] = 0;
+                    this.tiles[row][column] = -1;
                 }
             }
         }
-        const map = this.scene.make.tilemap({
+        const map = this.make.tilemap({
             data: this.tiles,
             tileWidth: StackSettings.TileSize,
             tileHeight: StackSettings.TileSize

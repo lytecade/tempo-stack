@@ -10,6 +10,7 @@ export default class ActionScene extends Phaser.Scene {
     create() {
         Resources.createBackgrounds(this, "image-background");
         this.tiles = [];
+        this.tileSwitch = [];
         this.generateMap();
     }
     update() {

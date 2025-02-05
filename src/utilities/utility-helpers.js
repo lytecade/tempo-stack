@@ -2,6 +2,7 @@ export const StackSettings = {
     TileSize: 8,
     TileMaxWidthBounds: 72,
     TileMaxHeightBounds: 120,
+    TileBuffer: 3,
 }
 export class Helpers {
     static isValueEmpty = (resourceValue) => {

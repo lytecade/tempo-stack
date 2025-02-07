@@ -23,30 +23,20 @@ export default class ActionScene extends Phaser.Scene {
             this.tiles[row] = [];
             for (let column = 0; column < widthInTiles; column++) {
                 if (row === (tileRows - 1)) {
-                    this.tiles[row][column] = 4;
+                    if (column == 0) {
+                        this.tiles[row][column] = 3;
+                    } else if (column == (widthInTiles - 1)) {
+                        this.tiles[row][column] = 5;
+                    } else {
+                        this.tiles[row][column] = 4;
+                    }
                 } else {
                     if (column == 0) {
-                        this.tiles[row][column] = 7;
+                        this.tiles[row][column] = 1;
                     } else if (column == (widthInTiles - 1)) {
-                        this.tiles[row][column] = 7;
-                    } else if (column == (widthInTiles - 2)) {
-                        if (row == (tileRows - 2)) {
-                            this.tiles[row][column] = 5;
-                        } else {
-                            this.tiles[row][column] = 2;
-                        }
-                    } else if (column == 1) {
-                        if (row == (tileRows - 2)) {
-                            this.tiles[row][column] = 3;
-                        } else {
-                            this.tiles[row][column] = 0;
-                        }
+                        this.tiles[row][column] = 2;
                     } else {
-                        if (row == (tileRows - 2)) {
-                            this.tiles[row][column] = 1;
-                        } else {
-                            this.tiles[row][column] = -1;
-                        }
+                        this.tiles[row][column] = 0;
                     }
                 }
             }

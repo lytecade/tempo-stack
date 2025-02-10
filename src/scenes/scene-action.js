@@ -46,7 +46,7 @@ export default class ActionScene extends Phaser.Scene {
             tileWidth: StackSettings.TileSize,
             tileHeight: StackSettings.TileSize
         });
-        this.groundLayer = map.createLayer(0, map.addTilesetImage("tileset-stacks", "tileset-stacks"), this.x, 0).setCollisionByExclusion([-1, 0, 19]);
+        this.groundLayer = map.createLayer(0, map.addTilesetImage("tileset-stacks", "tileset-stacks"), this.x, 0).setCollisionByExclusion([-1, 0]);
     }
     destroy() {
         if (this.groundLayer) {

@@ -1,4 +1,5 @@
 import Resources from "../utilities/utility-resources.js"
+import Stack from "../objects/object-stack.js";
 import { StackSettings, Helpers } from "../utilities/utility-helpers.js";
 export default class ActionScene extends Phaser.Scene {
     constructor() {
@@ -46,7 +47,8 @@ export default class ActionScene extends Phaser.Scene {
             tileWidth: StackSettings.TileSize,
             tileHeight: StackSettings.TileSize
         });
-        this.groundLayer = map.createLayer(0, map.addTilesetImage("tileset-stacks", "tileset-stacks"), this.x, 0).setCollisionByExclusion([-1, 0, 19]);
+        this.groundLayer = map.createLayer(0, map.addTilesetImage("tileset-stacks", "tileset-stacks"), this.x, 0).setCollisionByExclusion([-1, 0]);
+        this.mainStack = new Stack(this, 16, 16);
     }
     destroy() {
         if (this.groundLayer) {

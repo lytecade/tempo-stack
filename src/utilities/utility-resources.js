@@ -1,7 +1,7 @@
 export default class Resources {
     static BaseResources = new Map([
         ["image-background", { type: "images", name: "image-background", ext: "png" }],
-        ["sprite-stack", { type: "spritesheets", name: "sprite-player", ext: "png" }],
+        ["sprite-stack", { type: "spritesheets", name: "sprite-stack", ext: "png" }],
         ["tileset-stacks", { type: "tilesets", name: "tileset-stacks", ext: "png" }]
     ]);
     static createResources = (scene) => {

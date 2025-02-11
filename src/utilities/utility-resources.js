@@ -1,6 +1,7 @@
 export default class Resources {
     static BaseResources = new Map([
         ["image-background", { type: "images", name: "image-background", ext: "png" }],
+        ["sprite-stack", { type: "spritesheets", name: "sprite-player", ext: "png" }],
         ["tileset-stacks", { type: "tilesets", name: "tileset-stacks", ext: "png" }]
     ]);
     static createResources = (scene) => {
@@ -15,7 +16,7 @@ export default class Resources {
                     scene.load.image(value.name, resourcePath);
                     break;
                 case "spritesheets":
-                    scene.load.spritesheet(value.name, resourcePath, { frameWidth: 8, frameHeight: 8, margin: 0, spacing: 0 });
+                    scene.load.spritesheet(value.name, resourcePath, { frameWidth: 32, frameHeight: 8, margin: 0, spacing: 0 });
                     break;
                 default:
                     break;

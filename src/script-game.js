@@ -8,12 +8,7 @@ const game = new Phaser.Game({
     pixelArt: true,
     scene: [InitScene, ActionScene],
     physics: {
-        default: "arcade",
-        arcade: {
-            gravity: {
-                y: 100
-            },
-        },
+        default: "arcade"
     },
     scale: {
         mode: Phaser.Scale.FIT,

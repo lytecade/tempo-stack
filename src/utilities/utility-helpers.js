@@ -3,7 +3,12 @@ export const StackSettings = {
     TileMaxWidthBounds: 72,
     TileMaxHeightBounds: 120,
     TileBuffer: 3,
-}
+};
+export const SpeedTypes = {
+    Normal: 20,
+    Fast: 40,
+    Faster: 80,
+};
 export class Helpers {
     static isValueEmpty = (resourceValue) => {
         if (resourceValue === 0 || resourceValue === undefined || resourceValue === "") {
@@ -20,5 +25,5 @@ export class Helpers {
         }
         return baseIndexCount;
     }
-}
+};
 

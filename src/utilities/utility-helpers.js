@@ -1,7 +1,7 @@
 export const StackSettings = {
     TileSize: 8,
-    TileMaxWidthBounds: 72,
-    TileMaxHeightBounds: 120,
+    TileMaxWidthBounds: 120,
+    TileMaxHeightBounds: 72,
     TileBuffer: 3,
 };
 export const SpeedTypes = {

@@ -12,10 +12,13 @@ export default class ActionScene extends Phaser.Scene {
         Resources.createBackgrounds(this, "image-background");
         this.tiles = [];
         this.tileSwitch = [];
+        this.mainStacks = [];
         this.generateMap();
     }
     update() {
-        this.mainStack.update();
+        if (this.mainStacks.length > 0) {
+            this.mainStacks[this.mainStacks.length - 1].update();
+        }
     }
     generateMap() {
         const tileRows = Math.min(Math.floor(StackSettings.TileMaxHeightBounds / StackSettings.TileSize));
@@ -48,7 +51,9 @@ export default class ActionScene extends Phaser.Scene {
             tileHeight: StackSettings.TileSize
         });
         this.groundLayer = map.createLayer(0, map.addTilesetImage("tileset-stacks", "tileset-stacks"), this.x, 0).setCollisionByExclusion([-1, 0]);
-        this.mainStack = new Stack(this, 32, 60);
+        if (this.mainStacks.length === 0) {
+            this.mainStacks.push(new Stack(this, 32, 60));
+        }
     }
     destroy() {
         if (this.groundLayer) {

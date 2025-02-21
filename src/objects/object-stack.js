@@ -8,14 +8,21 @@ export default class Stack {
         this.spriteCollider = scene.physics.world.addCollider(this.sprite, scene.groundLayer);
         this.movementState = true;
         this.movementRight = true;
+        const { ENTER, SPACE } = Phaser.Input.Keyboard.KeyCodes; 
+        this.keys = scene.input.keyboard.addKeys({ enter: ENTER, space: SPACE });
     }
     update() {
-        const { sprite } = this;
+        const { keys, sprite } = this; 
         if (sprite.body) {
             if (this.sprite.body.blocked.left) {
                 this.movementRight = true;
             } else if (this.sprite.body.blocked.right) { 
                 this.movementRight = false;
+            }
+            if (this.movementState === true) {
+                if (Phaser.Input.Keyboard.JustDown(keys.space) || Phaser.Input.Keyboard.JustDown(keys.enter)) {
+                    this.movementState = false;
+                }
             }
             sprite.body.setVelocityX(this.movementState ? (this.movementRight === true ? SpeedTypes.Normal : -SpeedTypes.Normal) : 0);
         }

@@ -18,6 +18,11 @@ export default class ActionScene extends Phaser.Scene {
     update() {
         if (this.mainStacks.length > 0) {
             this.mainStacks[this.mainStacks.length - 1].update();
+            if (this.mainStacks[this.mainStacks.length - 1].movementState === false) {
+                let currentX = this.mainStacks[this.mainStacks.length - 1].x;
+                let currentY = this.mainStacks[this.mainStacks.length - 1].y;
+                this.mainStacks.push(new Stack(this, currentX, currentY - 8));
+            }
         }
     }
     generateMap() {

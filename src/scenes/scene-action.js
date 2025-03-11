@@ -19,9 +19,17 @@ export default class ActionScene extends Phaser.Scene {
         if (this.mainStacks.length > 0) {
             this.mainStacks[this.mainStacks.length - 1].update();
             if (this.mainStacks[this.mainStacks.length - 1].movementState === false) {
-                let currentX = this.mainStacks[this.mainStacks.length - 1].x;
-                let currentY = this.mainStacks[this.mainStacks.length - 1].y;
-                this.mainStacks.push(new Stack(this, currentX, currentY - 8));
+                let currentFrame = 0;
+                let currentX = this.mainStacks[this.mainStacks.length - 1].sprite.x;
+                let currentY = this.mainStacks[this.mainStacks.length - 1].sprite.y;
+                if (this.mainStacks.length > 1) {
+                    let stackRecent = Math.round(this.mainStacks[this.mainStacks.length - 1].sprite.x);
+                    let stackPrevious = Math.round(this.mainStacks[this.mainStacks.length - 2].sprite.x);
+                    let stackAbs = Math.abs(stackRecent - stackPrevious);
+
+                    console.log(stackAbs);
+                }
+                this.mainStacks.push(new Stack(this, currentX, currentY - 8, 0));
             }
         }
     }
@@ -57,7 +65,7 @@ export default class ActionScene extends Phaser.Scene {
         });
         this.groundLayer = map.createLayer(0, map.addTilesetImage("tileset-stacks", "tileset-stacks"), this.x, 0).setCollisionByExclusion([-1, 0]);
         if (this.mainStacks.length === 0) {
-            this.mainStacks.push(new Stack(this, 32, 60));
+            this.mainStacks.push(new Stack(this, 32, 60, 0));
         }
     }
     destroy() {

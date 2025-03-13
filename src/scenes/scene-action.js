@@ -19,17 +19,20 @@ export default class ActionScene extends Phaser.Scene {
         if (this.mainStacks.length > 0) {
             this.mainStacks[this.mainStacks.length - 1].update();
             if (this.mainStacks[this.mainStacks.length - 1].movementState === false) {
-                let currentFrame = 0;
+                let currentFrame = this.mainStacks[this.mainStacks.length - 1].currentFrame;
                 let currentX = this.mainStacks[this.mainStacks.length - 1].sprite.x;
                 let currentY = this.mainStacks[this.mainStacks.length - 1].sprite.y;
                 if (this.mainStacks.length > 1) {
                     let stackRecent = Math.round(this.mainStacks[this.mainStacks.length - 1].sprite.x);
                     let stackPrevious = Math.round(this.mainStacks[this.mainStacks.length - 2].sprite.x);
                     let stackAbs = Math.abs(stackRecent - stackPrevious);
-
-                    console.log(stackAbs);
+                    currentFrame = currentFrame + stackAbs;
                 }
-                this.mainStacks.push(new Stack(this, currentX, currentY - 8, 0));
+	        if (currentFrame >= 32) {
+	            console.log("Game Over");
+	        } else {
+	            this.mainStacks.push(new Stack(this, currentX, currentY - 8, currentFrame));
+	        }
             }
         }
     }

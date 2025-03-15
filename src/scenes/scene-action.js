@@ -19,19 +19,25 @@ export default class ActionScene extends Phaser.Scene {
         if (this.mainStacks.length > 0) {
             this.mainStacks[this.mainStacks.length - 1].update();
             if (this.mainStacks[this.mainStacks.length - 1].movementState === false) {
+                let currentSize = this.mainStacks[this.mainStacks.length - 1].currentSize;
                 let currentFrame = this.mainStacks[this.mainStacks.length - 1].currentFrame;
                 let currentX = this.mainStacks[this.mainStacks.length - 1].sprite.x;
                 let currentY = this.mainStacks[this.mainStacks.length - 1].sprite.y;
                 if (this.mainStacks.length > 1) {
                     let stackRecent = Math.round(this.mainStacks[this.mainStacks.length - 1].sprite.x);
                     let stackPrevious = Math.round(this.mainStacks[this.mainStacks.length - 2].sprite.x);
-                    let stackAbs = Math.abs(stackRecent - stackPrevious);
-                    currentFrame = currentFrame + stackAbs;
+                    let stackAbs = (stackRecent - stackPrevious);
+                    if (stackAbs <= 0) {
+                        currentSize = currentSize - Math.abs(stackAbs); 
+                    } else {
+                        currentSize = currentSize - stackAbs;
+                    }
+                    currentFrame = 32 - currentSize;
                 }
 	        if (currentFrame >= 32) {
 	            console.log("Game Over");
 	        } else {
-	            this.mainStacks.push(new Stack(this, currentX, currentY - 8, currentFrame));
+	            this.mainStacks.push(new Stack(this, currentX, currentY - 8, currentFrame, currentSize));
 	        }
             }
         }
@@ -68,7 +74,7 @@ export default class ActionScene extends Phaser.Scene {
         });
         this.groundLayer = map.createLayer(0, map.addTilesetImage("tileset-stacks", "tileset-stacks"), this.x, 0).setCollisionByExclusion([-1, 0]);
         if (this.mainStacks.length === 0) {
-            this.mainStacks.push(new Stack(this, 32, 60, 0));
+            this.mainStacks.push(new Stack(this, 32, 60, 0, 32));
         }
     }
     destroy() {

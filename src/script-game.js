@@ -8,7 +8,10 @@ const game = new Phaser.Game({
     pixelArt: true,
     scene: [InitScene, ActionScene],
     physics: {
-        default: "arcade"
+        default: "arcade",
+        arcade : {
+            debug: true
+        }
     },
     scale: {
         mode: Phaser.Scale.FIT,

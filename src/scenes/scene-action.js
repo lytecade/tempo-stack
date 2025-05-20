@@ -26,11 +26,15 @@ export default class ActionScene extends Phaser.Scene {
                 if (this.mainStacks.length > 1) {
                     let stackRecent = Math.round(this.mainStacks[this.mainStacks.length - 1].sprite.x);
                     let stackPrevious = Math.round(this.mainStacks[this.mainStacks.length - 2].sprite.x);
-                    let stackAbs = (stackRecent - stackPrevious);
-                    if (stackAbs <= 0) {
-                        currentSize = currentSize - Math.abs(stackAbs); 
+
+                    console.log(stackRecent);
+                    console.log(stackPrevious);
+                    if (stackRecent < stackPrevious) {
+                        currentSize = currentSize - (stackPrevious - stackRecent)
                     } else {
-                        currentSize = currentSize - stackAbs;
+                        let previousTotal = this.mainStacks[this.mainStacks.length - 2].currentSize + stackPrevious;
+                        let currentTotal = currentSize + stackRecent;
+                        currentSize = currentSize - (currentTotal - previousTotal);
                     }
                     currentFrame = 32 - currentSize;
                 }

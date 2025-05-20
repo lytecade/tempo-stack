@@ -6,7 +6,7 @@ export default class Stack {
         this.scene = scene;
         this.currentFrame = currentFrame;
         this.currentSize = currentSize;
-        this.sprite = scene.physics.add.sprite(x, y, "sprite-stack", currentFrame).setMaxVelocity(60, 60).setSize(currentSize, 8).setOrigin(0.5, 0.5);
+        this.sprite = scene.physics.add.sprite(x, y, "sprite-stack", currentFrame).setMaxVelocity(60, 60).setSize(currentSize, 8).setOrigin(0.5, 0.5).setOffset(0, 0);
         this.spriteCollider = scene.physics.world.addCollider(this.sprite, scene.groundLayer);
         this.movementState = true;
         this.movementRight = true;

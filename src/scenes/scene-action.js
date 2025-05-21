@@ -34,9 +34,13 @@ export default class ActionScene extends Phaser.Scene {
                     } else {
                         let previousTotal = this.mainStacks[this.mainStacks.length - 2].currentSize + stackPrevious;
                         let currentTotal = currentSize + stackRecent;
-                        currentSize = currentSize - (currentTotal - previousTotal);
+                        let deductionValue = (currentTotal - previousTotal);
+                        currentSize = deductionValue < 0 ? currentSize : (currentSize - deductionValue);
                     }
                     currentFrame = 32 - currentSize;
+
+                    // note, if a smaller block is inside a bigger, the size will return
+
                 }
 	        if (currentFrame >= 32) {
 	            console.log("Game Over");

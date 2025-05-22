@@ -26,9 +26,6 @@ export default class ActionScene extends Phaser.Scene {
                 if (this.mainStacks.length > 1) {
                     let stackRecent = Math.round(this.mainStacks[this.mainStacks.length - 1].sprite.x);
                     let stackPrevious = Math.round(this.mainStacks[this.mainStacks.length - 2].sprite.x);
-
-                    console.log(stackRecent);
-                    console.log(stackPrevious);
                     if (stackRecent < stackPrevious) {
                         currentSize = currentSize - (stackPrevious - stackRecent)
                     } else {
@@ -38,10 +35,6 @@ export default class ActionScene extends Phaser.Scene {
                         currentSize = deductionValue < 0 ? currentSize : (currentSize - deductionValue);
                     }
                     currentFrame = 32 - currentSize;
-
-                    // note, when the block is half way past the y axis, adjust the camera to go up
-                    // begin to plan level chunks? or attemp to draw the full level?
-
                 }
 	        if (currentFrame >= 32) {
 	            console.log("Game Over");

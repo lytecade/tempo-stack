@@ -26,9 +26,6 @@ export default class ActionScene extends Phaser.Scene {
                 if (this.mainStacks.length > 1) {
                     let stackRecent = Math.round(this.mainStacks[this.mainStacks.length - 1].sprite.x);
                     let stackPrevious = Math.round(this.mainStacks[this.mainStacks.length - 2].sprite.x);
-
-                    console.log(stackRecent);
-                    console.log(stackPrevious);
                     if (stackRecent < stackPrevious) {
                         currentSize = currentSize - (stackPrevious - stackRecent)
                     } else {
@@ -38,14 +35,12 @@ export default class ActionScene extends Phaser.Scene {
                         currentSize = deductionValue < 0 ? currentSize : (currentSize - deductionValue);
                     }
                     currentFrame = 32 - currentSize;
-
-                    // note, if a smaller block is inside a bigger, the size will return
-
                 }
 	        if (currentFrame >= 32) {
 	            console.log("Game Over");
 	        } else {
 	            this.mainStacks.push(new Stack(this, currentX, currentY - 8, currentFrame, currentSize));
+                    this.setCamera(0);
 	        }
             }
         }
@@ -82,8 +77,12 @@ export default class ActionScene extends Phaser.Scene {
         });
         this.groundLayer = map.createLayer(0, map.addTilesetImage("tileset-stacks", "tileset-stacks"), this.x, 0).setCollisionByExclusion([-1, 0]);
         if (this.mainStacks.length === 0) {
-            this.mainStacks.push(new Stack(this, 32, 60, 0, 32));
+            this.mainStacks.push(new Stack(this, 32, Math.min(StackSettings.TileMaxHeightBounds - 12), 0, 32));
+            this.setCamera(0);
         }
+    }
+    setCamera(offsetY) {
+        this.cameras.main.setBounds(0, Math.min((StackSettings.TileMaxHeightBounds - this.sys.game.config.height) - offsetY), this.sys.game.config.width, this.sys.game.config.height);
     }
     destroy() {
         if (this.groundLayer) {

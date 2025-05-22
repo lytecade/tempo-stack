@@ -84,7 +84,7 @@ export default class ActionScene extends Phaser.Scene {
         });
         this.groundLayer = map.createLayer(0, map.addTilesetImage("tileset-stacks", "tileset-stacks"), this.x, 0).setCollisionByExclusion([-1, 0]);
         if (this.mainStacks.length === 0) {
-            this.mainStacks.push(new Stack(this, 32, 60, 0, 32));
+            this.mainStacks.push(new Stack(this, 32, Math.min(StackSettings.TileMaxHeightBounds - 12), 0, 32));
             this.setCamera(0);
         }
     }

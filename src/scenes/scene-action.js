@@ -37,10 +37,12 @@ export default class ActionScene extends Phaser.Scene {
                     currentFrame = 32 - currentSize;
                 }
 	        if (currentFrame >= 32) {
-	            console.log("Game Over");
+	            // Game Over
 	        } else {
 	            this.mainStacks.push(new Stack(this, currentX, currentY - 8, currentFrame, currentSize));
-                    this.setCamera(0);
+                    if (currentY < 100) {
+                        this.setCamera((this.mainStacks.length * 8) - 24);
+                    }
 	        }
             }
         }

@@ -40,8 +40,8 @@ export default class ActionScene extends Phaser.Scene {
 	            // Game Over
 	        } else {
 	            this.mainStacks.push(new Stack(this, currentX, currentY - 8, currentFrame, currentSize));
-                    if (currentY < 100) {
-                        this.setCamera((this.mainStacks.length * 8) - 24);
+                    if (currentY < (StackSettings.TileMaxHeightBounds - 40)) {
+                        this.setCamera((this.mainStacks.length * 8) - 32);
                     }
 	        }
             }

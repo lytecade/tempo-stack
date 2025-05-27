@@ -39,7 +39,7 @@ export default class ActionScene extends Phaser.Scene {
 	        if (currentFrame >= 32) {
 	            // Game Over
 	        } else {
-	            this.mainStacks.push(new Stack(this, currentX, currentY - 8, currentFrame, currentSize));
+	            this.mainStacks.push(new Stack(this, currentX, currentY - 8, currentFrame, currentSize, this.mainStacks.length));
                     if (currentY < (StackSettings.TileMaxHeightBounds - 40)) {
                         this.setCamera((this.mainStacks.length * 8) - 32);
                     }
@@ -79,7 +79,7 @@ export default class ActionScene extends Phaser.Scene {
         });
         this.groundLayer = map.createLayer(0, map.addTilesetImage("tileset-stacks", "tileset-stacks"), this.x, 0).setCollisionByExclusion([-1, 0]);
         if (this.mainStacks.length === 0) {
-            this.mainStacks.push(new Stack(this, 32, Math.min(StackSettings.TileMaxHeightBounds - 12), 0, 32));
+            this.mainStacks.push(new Stack(this, 32, Math.min(StackSettings.TileMaxHeightBounds - 12), 0, 32, this.mainStacks.length));
             this.setCamera(0);
         }
     }

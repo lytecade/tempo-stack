@@ -1,16 +1,16 @@
 export const StackSettings = {
     TileSize: 8,
     TileMaxWidthBounds: 120,
-    TileMaxHeightBounds: 288,
+    TileMaxHeightBounds: 576,
     TileBuffer: 3,
 };
 export const SpeedTypes = {
-    Normal: 20,
-    SpeedTwo: 30,
-    SpeedThree: 40,
-    SpeedFour: 50,
-    SpeedFive: 60,
-    SpeedMax: 70,
+    Normal: 25,
+    SpeedTwo: 40,
+    SpeedThree: 55,
+    SpeedFour: 70,
+    SpeedFive: 85,
+    SpeedMax: 100,
 };
 export class Helpers {
     static isValueEmpty = (resourceValue) => {

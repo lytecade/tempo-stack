@@ -1,4 +1,4 @@
-# Tempo Stack - README
+# Tempo Stack
 
 ## Overview
 

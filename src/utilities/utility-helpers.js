@@ -6,8 +6,11 @@ export const StackSettings = {
 };
 export const SpeedTypes = {
     Normal: 20,
-    Fast: 40,
-    Faster: 80,
+    SpeedTwo: 30,
+    SpeedThree: 40,
+    SpeedFour: 50,
+    SpeedFive: 60,
+    SpeedMax: 70,
 };
 export class Helpers {
     static isValueEmpty = (resourceValue) => {

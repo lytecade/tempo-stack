@@ -7,6 +7,7 @@ export default class Stack {
         this.currentFrame = currentFrame;
         this.currentSize = currentSize;
         this.currentCount = currentCount;
+        this.currentSpeed = SpeedTypes.Normal;
         this.sprite = scene.physics.add.sprite(x, y, "sprite-stack", currentFrame).setMaxVelocity(60, 60).setSize(currentSize, 8).setOrigin(0.5, 0.5).setOffset(0, 0);
         this.spriteCollider = scene.physics.world.addCollider(this.sprite, scene.groundLayer);
         this.movementState = true;
@@ -27,8 +28,30 @@ export default class Stack {
                     this.movementState = false;
                 }
             }
-            let speedFactor = Math.abs(this.currentCount - (this.currentCount % 4));
-            sprite.body.setVelocityX(this.movementState ? (this.movementRight === true ? SpeedTypes.Normal : -SpeedTypes.Normal) : 0);
+            this.currentSpeed = this.getSpeed(this.currentCount, this.currentSpeed);
+            sprite.body.setVelocityX(this.movementState ? (this.movementRight === true ? this.currentSpeed : -this.currentSpeed) : 0);
         }
+    }
+    getSpeed(currentCount, currentSpeed) {
+        let speedFactor = Math.abs(currentCount - (currentCount % 4));
+        let returnSpeed;
+        switch (speedFactor) {
+            case 16:
+                returnSpeed = SpeedTypes.SpeedFive; 
+                break;
+            case 12:
+                returnSpeed = SpeedTypes.SpeedFour; 
+                break;
+            case 8:
+                returnSpeed = SpeedTypes.SpeedThree; 
+                break;
+            case 4:
+                returnSpeed = SpeedTypes.SpeedTwo; 
+                break;
+            default:
+                returnSpeed = (speedFactor >= 16) ? SpeedTypes.SpeedMax : currentSpeed; 
+                break;
+        }   
+        return returnSpeed;
     }
 }

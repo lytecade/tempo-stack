@@ -1,6 +1,7 @@
 export default class Resources {
     static BaseResources = new Map([
         ["image-background", { type: "images", name: "image-background", ext: "png" }],
+        ["sprite-hud", { type: "spritesheets", name: "sprite-hud", ext: "png" }],
         ["sprite-stack", { type: "spritesheets", name: "sprite-stack", ext: "png" }],
         ["tileset-stacks", { type: "tilesets", name: "tileset-stacks", ext: "png" }]
     ]);
@@ -16,7 +17,8 @@ export default class Resources {
                     scene.load.image(value.name, resourcePath);
                     break;
                 case "spritesheets":
-                    scene.load.spritesheet(value.name, resourcePath, { frameWidth: 32, frameHeight: 8, margin: 0, spacing: 0 });
+                    let frameWidthValue = (value.name.includes("stack")) ? 32 : 8;
+                    scene.load.spritesheet(value.name, resourcePath, { frameWidth: frameWidthValue, frameHeight: 8, margin: 0, spacing: 0 });
                     break;
                 default:
                     break;

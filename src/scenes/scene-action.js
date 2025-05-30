@@ -1,6 +1,7 @@
 import Resources from "../utilities/utility-resources.js"
 import Stack from "../objects/object-stack.js";
 import { StackSettings, Helpers } from "../utilities/utility-helpers.js";
+import UIs from "../utilities/utility-uis.js"
 export default class ActionScene extends Phaser.Scene {
     constructor() {
         super({ key: 'ActionScene' });
@@ -14,6 +15,7 @@ export default class ActionScene extends Phaser.Scene {
         this.tileSwitch = [];
         this.mainStacks = [];
         this.generateMap();
+        UIs.setHudCounter(this);
     }
     update() {
         if (this.mainStacks.length > 0) {

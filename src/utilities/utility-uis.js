@@ -7,4 +7,11 @@ export default class UIs {
             }
         });
     }
+    static setHudCounter = (scene) => {
+        scene.hudCounters = [0, 0];
+        scene.hudCounterImages = [];
+        for (let i = 0; i < scene.hudCounters.length; i++) {
+            scene.hudCounterImages.push(scene.add.image(18 + (i * 4), 6, 'sprite-hud', 0).setOrigin(1, 0).setScrollFactor(0));
+        }
+    }
 }

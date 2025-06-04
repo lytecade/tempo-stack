@@ -15,7 +15,7 @@ export default class ActionScene extends Phaser.Scene {
         this.tileSwitch = [];
         this.mainStacks = [];
         this.generateMap();
-        UIs.setHudCounter(this);
+        UIs.initHudCounter(this);
     }
     update() {
         if (this.mainStacks.length > 0) {
@@ -41,6 +41,7 @@ export default class ActionScene extends Phaser.Scene {
 	        if (currentFrame >= 32) {
 	            // Game Over
 	        } else {
+                    UIs.updateHudCounter(this);
 	            this.mainStacks.push(new Stack(this, currentX, currentY - 8, currentFrame, currentSize, this.mainStacks.length));
                     if (currentY < (StackSettings.TileMaxHeightBounds - 40)) {
                         this.setCamera((this.mainStacks.length * 8) - 32);

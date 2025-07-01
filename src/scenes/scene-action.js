@@ -39,7 +39,10 @@ export default class ActionScene extends Phaser.Scene {
                     currentFrame = 32 - currentSize;
                 }
 	        if (currentFrame >= 32) {
-	            // Game Over
+                    this.physics.pause();
+                    this.time.delayedCall(3000, () => {
+                      this.scene.restart();
+                    }, [], this);
 	        } else {
                     UIs.updateHudCounter(this);
 	            this.mainStacks.push(new Stack(this, currentX, currentY - 8, currentFrame, currentSize, this.mainStacks.length));

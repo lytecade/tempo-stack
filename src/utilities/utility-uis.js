@@ -28,4 +28,37 @@ export default class UIs {
             scene.hudCounterImages[i].setFrame(scene.hudCounters[i]);
         }
     }
+    static setAudioStatus = (scene, settings) => {
+        if (settings.get('settingAudioActive') === undefined) {
+            settings.set('settingAudioActive', true);
+            scene.audioBar = scene.add.image(100, 6, 'sprite-hud', 10).setOrigin(1, 0).setScrollFactor(0).setDepth(100);
+            scene.sound.volume = 1;
+        } else if (settings.get('settingAudioActive') === false) {
+            scene.audioBar = scene.add.image(100, 6, 'sprite-hud', 11).setOrigin(1, 0).setScrollFactor(0).setDepth(100);
+            scene.sound.volume = 0;
+        } else {
+            scene.audioBar = scene.add.image(100, 6, 'sprite-hud', 10).setOrigin(1, 0).setScrollFactor(0).setDepth(100);
+            scene.sound.volume = 1;
+        }
+    }
+    static setAudioUpdate = (scene) => {
+        if (scene.audioBar.frame.name == 11) {
+            scene.sound.volume = 0;
+        } else if (scene.audioBar.frame.name == 10) {
+            scene.sound.volume = 1;
+        }
+    }
+    static setAudioBar = (scene, audioBarReference, audioBarPressedReference) => {
+        scene.input.on('pointerdown', function (pointer) {
+            if (audioBarReference.getBounds().contains(pointer.x, pointer.y)) {
+                if (audioBarPressedReference.registry.get('settingAudioActive') === true) {
+                    audioBarReference.setFrame(11);
+                    audioBarPressedReference.registry.set('settingAudioActive', false);
+                } else {
+                    audioBarReference.setFrame(10);
+                    audioBarPressedReference.registry.set('settingAudioActive', true);
+                }
+            } 
+        });
+    }
 }

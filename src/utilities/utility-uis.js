@@ -28,6 +28,26 @@ export default class UIs {
             scene.hudCounterImages[i].setFrame(scene.hudCounters[i]);
         }
     }
+    static setScreenStatus = (scene, screenGame) => {
+        if (screenGame.scale.isFullscreen) {
+            scene.screenBar = scene.add.image(110, 6, 'sprite-hud', 12).setOrigin(1, 0).setScrollFactor(0).setDepth(100);
+        } else {
+            scene.screenBar = scene.add.image(110, 6, 'sprite-hud', 13).setOrigin(1, 0).setScrollFactor(0).setDepth(100);
+        }
+    }
+    static setScreenBar = (scene, screenBarReference, screenGame) => {
+        scene.input.on('pointerdown', function (pointer) {
+            if (screenBarReference.getBounds().contains(pointer.x, pointer.y)) {
+                if (!screenGame.scale.isFullscreen) {
+                    screenBarReference.setFrame(12);
+                    screenGame.scale.startFullscreen();
+                } else {
+                    screenBarReference.setFrame(13);
+                    screenGame.scale.stopFullscreen();
+                }
+            } 
+        });
+    }
     static setAudioStatus = (scene, settings) => {
         if (settings.get('settingAudioActive') === undefined) {
             settings.set('settingAudioActive', true);

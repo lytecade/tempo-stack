@@ -11,13 +11,19 @@ export default class ActionScene extends Phaser.Scene {
     }
     create() {
         Resources.createBackgrounds(this, "image-background");
+        this.game.scale.fullScreenTarget = document.documentElement; 
         this.tiles = [];
         this.tileSwitch = [];
         this.mainStacks = [];
         this.generateMap();
         UIs.initHudCounter(this);
+        UIs.setAudioStatus(this, this.game.registry);
+        UIs.setAudioBar(this, this.audioBar, this.game);
+        UIs.setScreenStatus(this, this.game);
+        UIs.setScreenBar(this, this.screenBar, this.game);
     }
     update() {
+        UIs.setAudioUpdate(this);
         if (this.mainStacks.length > 0) {
             this.mainStacks[this.mainStacks.length - 1].update();
             if (this.mainStacks[this.mainStacks.length - 1].movementState === false) {

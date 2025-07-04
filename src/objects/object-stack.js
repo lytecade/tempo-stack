@@ -19,8 +19,9 @@ export default class Stack {
     update() {
         const { keys, sprite } = this; 
         if (sprite.body) {
-            this.scene.input.on('pointerdown', () => {
-                this.pointerDownFlag = true;
+            let currentScene = this.scene;
+            currentScene.input.on('pointerdown', (pointer) => {
+                this.pointerDownFlag = (pointer.y > 14) ? true : this.pointerDownFlag;
             });
             if (this.sprite.body.blocked.left) {
                 this.movementRight = true;

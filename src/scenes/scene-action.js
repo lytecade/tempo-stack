@@ -10,7 +10,7 @@ export default class ActionScene extends Phaser.Scene {
         Resources.createResources(this);
     }
     create() {
-        Resources.createBackgrounds(this, "image-background");
+        Resources.createBackgrounds(this);
         this.game.scale.fullScreenTarget = document.documentElement; 
         this.tiles = [];
         this.tileSwitch = [];

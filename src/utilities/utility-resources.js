@@ -1,6 +1,5 @@
 export default class Resources {
     static BaseResources = new Map([
-        ["image-background", { type: "images", name: "image-background", ext: "png" }],
         ["sprite-hud", { type: "spritesheets", name: "sprite-hud", ext: "png" }],
         ["sprite-stack", { type: "spritesheets", name: "sprite-stack", ext: "png" }],
         ["tileset-stacks", { type: "tilesets", name: "tileset-stacks", ext: "png" }]
@@ -25,8 +24,13 @@ export default class Resources {
             }
         }
     }
-    static createBackgrounds = (sceneReference, texture) => {
-        sceneReference.add.image(0, 0, texture).setOrigin(0, 0).setScrollFactor(0);
+    static createBackgrounds = (sceneReference) => {
+        sceneReference.textures.generate('textureBackground', {
+            data: ['DD'],
+            pixelWidth: 1,
+            pixelHeight: 1
+        });
+        sceneReference.add.image(0, 0, 'textureBackground').setOrigin(0, 0).setScrollFactor(0).setDisplaySize(120, 120);
     }
 }
 

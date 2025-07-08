@@ -1,4 +1,3 @@
-import Resources from "../utilities/utility-resources.js"
 import Stack from "../objects/object-stack.js";
 import { StackSettings, Helpers } from "../utilities/utility-helpers.js";
 import UIs from "../utilities/utility-uis.js"
@@ -7,10 +6,15 @@ export default class ActionScene extends Phaser.Scene {
         super({ key: 'ActionScene' });
     }
     preload() {
-        Resources.createResources(this);
+        Helpers.createResources(this);
     }
     create() {
-        Resources.createBackgrounds(this);
+        this.textures.generate('textureBackground', {
+            data: ['DD'],
+            pixelWidth: 1,
+            pixelHeight: 1
+        });
+        this.add.image(0, 0, 'textureBackground').setOrigin(0, 0).setScrollFactor(0).setDisplaySize(120, 120);
         this.game.scale.fullScreenTarget = document.documentElement; 
         this.tiles = [];
         this.tileSwitch = [];
@@ -52,8 +56,8 @@ export default class ActionScene extends Phaser.Scene {
 	        } else {
                     UIs.updateHudCounter(this);
 	            this.mainStacks.push(new Stack(this, currentX, currentY - 8, currentFrame, currentSize, this.mainStacks.length));
-                    if (currentY < (StackSettings.TileMaxHeightBounds - 40)) {
-                        this.setCamera((this.mainStacks.length * 8) - 32);
+                    if (currentY < (StackSettings.TileMaxHeightBounds - 64)) {
+                        this.setCamera((this.mainStacks.length * 8) - 56);
                     }
 	        }
             }

@@ -30,9 +30,9 @@ export default class UIs {
     }
     static setScreenStatus = (scene, screenGame) => {
         if (screenGame.scale.isFullscreen) {
-            scene.screenBar = scene.add.image(110, 6, 'sprite-hud', 12).setOrigin(1, 0).setScrollFactor(0).setDepth(100);
+            scene.screenBar = scene.add.image(62, 6, 'sprite-hud', 12).setOrigin(1, 0).setScrollFactor(0).setDepth(100);
         } else {
-            scene.screenBar = scene.add.image(110, 6, 'sprite-hud', 13).setOrigin(1, 0).setScrollFactor(0).setDepth(100);
+            scene.screenBar = scene.add.image(62, 6, 'sprite-hud', 13).setOrigin(1, 0).setScrollFactor(0).setDepth(100);
         }
     }
     static setScreenBar = (scene, screenBarReference, screenGame) => {
@@ -51,13 +51,13 @@ export default class UIs {
     static setAudioStatus = (scene, settings) => {
         if (settings.get('settingAudioActive') === undefined) {
             settings.set('settingAudioActive', true);
-            scene.audioBar = scene.add.image(100, 6, 'sprite-hud', 10).setOrigin(1, 0).setScrollFactor(0).setDepth(100);
+            scene.audioBar = scene.add.image(52, 6, 'sprite-hud', 10).setOrigin(1, 0).setScrollFactor(0).setDepth(100);
             scene.sound.volume = 1;
         } else if (settings.get('settingAudioActive') === false) {
-            scene.audioBar = scene.add.image(100, 6, 'sprite-hud', 11).setOrigin(1, 0).setScrollFactor(0).setDepth(100);
+            scene.audioBar = scene.add.image(52, 6, 'sprite-hud', 11).setOrigin(1, 0).setScrollFactor(0).setDepth(100);
             scene.sound.volume = 0;
         } else {
-            scene.audioBar = scene.add.image(100, 6, 'sprite-hud', 10).setOrigin(1, 0).setScrollFactor(0).setDepth(100);
+            scene.audioBar = scene.add.image(52, 6, 'sprite-hud', 10).setOrigin(1, 0).setScrollFactor(0).setDepth(100);
             scene.sound.volume = 1;
         }
     }

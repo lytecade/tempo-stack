@@ -3,7 +3,7 @@ import ActionScene from "./scenes/scene-action.js";
 const game = new Phaser.Game({
     parent: "game",
     type: Phaser.AUTO,
-    width: 120,
+    width: 72,
     height: 120,
     pixelArt: true,
     scene: [InitScene, ActionScene],

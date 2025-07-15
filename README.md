@@ -31,3 +31,7 @@ The score is based on the number of blocks successfully stacked. Each successful
 
 - HTML5-compliant browser
 - JavaScript-enabled environment for game functionality
+
+## Important Note
+
+If you are running the game locally on your machine (i.e. in a docker container) you will need to replace the reference for the phaser script with an external CDN such as the one [here](https://phaser.io/download/stable). The script-phaser-3581 script is from a different project and is not included in this repository. Alternatively you can download a copy of the Phaser library from the official site.

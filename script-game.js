@@ -1,6 +1,6 @@
 const StackSettings = {
     TileSize: 8,
-    TileMaxWidthBounds: 72,
+    TileMaxWidthBounds: 96,
     TileMaxHeightBounds: 552,
     TileBuffer: 3,
 };
@@ -75,9 +75,9 @@ class UIs {
     }
     static setScreenStatus = (scene, screenGame) => {
         if (screenGame.scale.isFullscreen) {
-            scene.screenBar = scene.add.image(62, 6, 'sprite-hud', 12).setOrigin(1, 0).setScrollFactor(0).setDepth(100);
+            scene.screenBar = scene.add.image(86, 6, 'sprite-hud', 12).setOrigin(1, 0).setScrollFactor(0).setDepth(100);
         } else {
-            scene.screenBar = scene.add.image(62, 6, 'sprite-hud', 13).setOrigin(1, 0).setScrollFactor(0).setDepth(100);
+            scene.screenBar = scene.add.image(86, 6, 'sprite-hud', 13).setOrigin(1, 0).setScrollFactor(0).setDepth(100);
         }
     }
     static setScreenBar = (scene, screenBarReference, screenGame) => {
@@ -96,13 +96,13 @@ class UIs {
     static setAudioStatus = (scene, settings) => {
         if (settings.get('settingAudioActive') === undefined) {
             settings.set('settingAudioActive', true);
-            scene.audioBar = scene.add.image(52, 6, 'sprite-hud', 10).setOrigin(1, 0).setScrollFactor(0).setDepth(100);
+            scene.audioBar = scene.add.image(76, 6, 'sprite-hud', 10).setOrigin(1, 0).setScrollFactor(0).setDepth(100);
             scene.sound.volume = 1;
         } else if (settings.get('settingAudioActive') === false) {
-            scene.audioBar = scene.add.image(52, 6, 'sprite-hud', 11).setOrigin(1, 0).setScrollFactor(0).setDepth(100);
+            scene.audioBar = scene.add.image(76, 6, 'sprite-hud', 11).setOrigin(1, 0).setScrollFactor(0).setDepth(100);
             scene.sound.volume = 0;
         } else {
-            scene.audioBar = scene.add.image(52, 6, 'sprite-hud', 10).setOrigin(1, 0).setScrollFactor(0).setDepth(100);
+            scene.audioBar = scene.add.image(76, 6, 'sprite-hud', 10).setOrigin(1, 0).setScrollFactor(0).setDepth(100);
             scene.sound.volume = 1;
         }
     }
@@ -220,7 +220,7 @@ class ActionScene extends Phaser.Scene {
             pixelWidth: 1,
             pixelHeight: 1
         });
-        this.add.image(0, 0, 'textureBackground').setOrigin(0, 0).setScrollFactor(0).setDisplaySize(120, 120);
+        this.add.image(0, 0, 'textureBackground').setOrigin(0, 0).setScrollFactor(0).setDisplaySize(96, 96);
         this.game.scale.fullScreenTarget = document.documentElement; 
         this.tiles = [];
         this.tileSwitch = [];
@@ -262,8 +262,8 @@ class ActionScene extends Phaser.Scene {
 	        } else {
                     UIs.updateHudCounter(this);
 	            this.mainStacks.push(new Stack(this, currentX, currentY - 8, currentFrame, currentSize, this.mainStacks.length));
-                    if (currentY < (StackSettings.TileMaxHeightBounds - 64)) {
-                        this.setCamera((this.mainStacks.length * 8) - 56);
+                    if (currentY < (StackSettings.TileMaxHeightBounds - 56)) {
+                        this.setCamera((this.mainStacks.length * 8) - 48);
                     }
 	        }
             }
@@ -313,8 +313,8 @@ class ActionScene extends Phaser.Scene {
 const game = new Phaser.Game({
     parent: "game",
     type: Phaser.AUTO,
-    width: 72,
-    height: 120,
+    width: 96,
+    height: 96,
     pixelArt: true,
     scene: [InitScene, ActionScene],
     physics: {

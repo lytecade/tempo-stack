@@ -14,35 +14,6 @@ const SpeedTypes = {
     SpeedMax: 100,
 };
 
-class Helpers {
-    static createResources = (scene) => {
-        let baseResources = new Map([
-            ["sprite-hud", { type: "spritesheets", name: "sprite-hud", ext: "png" }],
-            ["sprite-stack", { type: "spritesheets", name: "sprite-stack", ext: "png" }],
-            ["tileset-stacks", { type: "tilesets", name: "tileset-stacks", ext: "png" }]
-        ]);
-        for (const [key, value] of baseResources) {
-            let resourcePath = `assets/${value.type}/${value.name}.${value.ext}`;
-            switch (value.type) {
-                case "sounds":
-                    scene.load.audio(value.name, resourcePath);
-                    break;
-                case "images":
-                case "tilesets":
-                    scene.load.image(value.name, resourcePath);
-                    break;
-                case "spritesheets":
-                    let frameWidthValue = (value.name.includes("stack")) ? 32 : 8;
-                    scene.load.spritesheet(value.name, resourcePath, { frameWidth: frameWidthValue, frameHeight: 8, margin: 0, spacing: 0 });
-                    break;
-                default:
-                    break;
-            }
-        }
-    }
-};
-
-
 class UIs {
     static setButtonInput = (scene, buttonReference, stopKey, startKey) => {
         scene.input.on('pointerdown', function (pointer) {
@@ -212,7 +183,9 @@ class ActionScene extends Phaser.Scene {
         super({ key: 'ActionScene' });
     }
     preload() {
-        Helpers.createResources(this);
+        this.load.spritesheet("sprite-hud", "assets/sprite-hud.png", { frameWidth: 8, frameHeight: 8, margin: 0, spacing: 0 });
+        this.load.spritesheet("sprite-stack", "assets/sprite-stack.png", { frameWidth: 32, frameHeight: 8, margin: 0, spacing: 0 });
+        this.load.image("tileset-stacks", "assets/tileset-stacks.png");
     }
     create() {
         this.textures.generate('textureBackground', {

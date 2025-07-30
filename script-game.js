@@ -167,14 +167,39 @@ class InitScene extends Phaser.Scene {
         super({ key: 'InitScene' });
     }
     preload() {
-        console.log("Run Preload");
+        this.load.image("image-title", "assets/image-title.png");
+        this.load.image("image-playbutton", "assets/image-playbutton.png");
     }
     create() {
-        console.log("Run Create");
+        let scene = this;
+        let centerX = this.cameras.main.width / 2;
+        const { ENTER, SPACE } = Phaser.Input.Keyboard.KeyCodes;
+        this.keys = this.input.keyboard.addKeys({ enter: ENTER, space: SPACE });
+        this.textures.generate('textureBackground', {
+            data: ['DD'],
+            pixelWidth: 1,
+            pixelHeight: 1
+        });
+        this.add.image(0, 0, 'textureBackground').setOrigin(0, 0).setScrollFactor(0).setDisplaySize(96, 96);
+        this.game.scale.fullScreenTarget = document.documentElement; 
+        this.titleBanner = this.add.image(centerX, 26, "image-title").setOrigin(0.5, 0).setScrollFactor(0).setDepth(100);
+        let buttonPlay = this.add.image(centerX, 59, "image-playbutton").setOrigin(0.5, 0).setScrollFactor(0).setDepth(100); 
+        this.input.on('pointerdown', function (pointer) {
+            if (buttonPlay.getBounds().contains(pointer.x, pointer.y)) {
+                scene.scene.stop(scene.key);
+                scene.scene.start('ActionScene');
+            }
+        });
     }
     update() {
-        this.scene.stop('InitScene');
-        this.scene.start('ActionScene');
+        const { keys } = this;
+        if (Phaser.Input.Keyboard.JustDown(keys.enter)) {
+            this.scene.stop('InitScene');
+            this.scene.start('ActionScene');
+        } else if (Phaser.Input.Keyboard.JustDown(keys.space)) {
+            this.scene.stop('InitScene');
+            this.scene.start('GuideScene');
+        }
     }
 }
 
